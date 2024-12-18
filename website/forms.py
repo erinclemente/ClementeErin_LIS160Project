@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django import forms
 from .models import Record
 
+# this is for the registration
 class SignUpForm(UserCreationForm):
 	email = forms.EmailField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Email Address'}))
 	first_name = forms.CharField(label="", max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'First Name'}))
@@ -30,16 +31,16 @@ class SignUpForm(UserCreationForm):
 		self.fields['password2'].label = ''
 		self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Re-enter the password for confirmation.</small></span>'
 
-# add record form
+# this adds a record form for a DreamDoc
 class AddRecordForm(forms.ModelForm):
-	first_name = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"First Name", "class":"form-control"}), label="")
-	last_name = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Last Name", "class":"form-control"}), label="")
-	email = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Email", "class":"form-control"}), label="")
-	phone = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Phone", "class":"form-control"}), label="")
-	address = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Address", "class":"form-control"}), label="")
-	city = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"City", "class":"form-control"}), label="")
-	state = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"State", "class":"form-control"}), label="")
-	zipcode = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Zip Code", "class":"form-control"}), label="")
+	first_name = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Dream Title", "class":"form-control"}), label="")
+	last_name = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Author", "class":"form-control"}), label="")
+	email = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Dream Type", "class":"form-control"}), label="")
+	phone = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Dreamed At", "class":"form-control"}), label="")
+	address = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Dream Content", "class":"form-control"}), label="")
+	city = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Emotions Felt", "class":"form-control"}), label="")
+	state = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Possible Causes", "class":"form-control"}), label="")
+	zipcode = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Analysis & Takeaways", "class":"form-control"}), label="")
 
 	class Meta:
 		model = Record

@@ -8,7 +8,7 @@ def home(request):
 	records = Record.objects.all()
 
 
-	# Check to see if loggin in
+	# this checks to see if you're logging in
 	if request.method == 'POST':
 		username = request.POST['username']
 		password = request.POST['password']
@@ -16,10 +16,10 @@ def home(request):
 		user = authenticate(request, username=username, password=password)
 		if user is not None:
 			login(request, user)
-			messages.success(request, "You have been logged in!")
+			messages.success(request, "You have successfully logged in. Welcome back!")
 			return redirect('home')
 		else:
-			messages.success(request, "There was an error logging in... :(")
+			messages.success(request, "Woah, there... There was an error logging in :(")
 			return redirect('home')
 	else:
 		return render(request, 'home.html', {'records':records})
