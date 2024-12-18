@@ -16,7 +16,7 @@ def home(request):
 		user = authenticate(request, username=username, password=password)
 		if user is not None:
 			login(request, user)
-			messages.success(request, "You have successfully logged in. Welcome back!")
+			messages.success(request, "You have successfully entered. Welcome back, dreamer!")
 			return redirect('home')
 		else:
 			messages.success(request, "Woah, there... There was an error logging in :(")
@@ -26,7 +26,7 @@ def home(request):
 
 def logout_user(request):
 	logout(request)
-	messages.success(request, "You have been logged out!")
+	messages.success(request, "You have successfully exited. Come back soon, dreamer!")
 	return redirect('home')
 
 def register_user(request):
@@ -39,7 +39,7 @@ def register_user(request):
 			password = form.cleaned_data['password1']
 			user = authenticate(username=username, password=password)
 			login(request, user)
-			messages.success(request, "You have successfully registered. Welcome!")
+			messages.success(request, "You have successfully registered. Welcome, dreamer!")
 			return redirect('home')
 	else:
 		form = SignUpForm()
@@ -60,10 +60,10 @@ def delete_record(request, pk):
 	if request.user.is_authenticated:
 		delete_it = Record.objects.get(id=pk)
 		delete_it.delete()
-		messages.success(request, "You have deleted the record successfully.")
+		messages.success(request, "You have deleted the DreamDoc successfully.")
 		return redirect('home')
 	else:
-		messages.success(request, "You must be logged in to delete this record.")
+		messages.success(request, "You must be logged in to delete this DreamDoc.")
 		
 def add_record(request):
 	form = AddRecordForm(request.POST or None)
@@ -71,7 +71,7 @@ def add_record(request):
 		if request.method == "POST":
 			if form.is_valid():
 				add_record = form.save()
-				messages.success(request, "Record added!")
+				messages.success(request, "DreamDoc added!")
 				return redirect('home')
 		return render(request, 'add_record.html', {'form':form})
 	else:
@@ -84,7 +84,7 @@ def update_record(request, pk):
 		form = AddRecordForm(request.POST or None, instance=current_record)
 		if form.is_valid():
 			form.save()
-			messages.success(request, "Record updated!")
+			messages.success(request, "DreamDoc updated!")
 			return redirect('home')
 		return render(request, 'update_record.html', {'form':form})
 	else:

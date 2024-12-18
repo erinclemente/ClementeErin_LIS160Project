@@ -17,7 +17,7 @@ class SignUpForm(UserCreationForm):
 		super(SignUpForm, self).__init__(*args, **kwargs)
 
 		self.fields['username'].widget.attrs['class'] = 'form-control'	
-		self.fields['username'].widget.attrs['placeholder'] = 'User Name'
+		self.fields['username'].widget.attrs['placeholder'] = 'Username'
 		self.fields['username'].label = ''
 		self.fields['username'].help_text = '<span class="form-text text-muted"><small>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small></span>'
 
@@ -32,15 +32,25 @@ class SignUpForm(UserCreationForm):
 		self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Re-enter the password for confirmation.</small></span>'
 
 # this adds a record form for a DreamDoc
+# See Note in models.py for the context of the comments below
+
 class AddRecordForm(forms.ModelForm):
-	first_name = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Dream Title", "class":"form-control"}), label="")
-	last_name = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Author", "class":"form-control"}), label="")
-	email = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Dream Type", "class":"form-control"}), label="")
-	phone = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Dreamed At", "class":"form-control"}), label="")
-	address = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Dream Content", "class":"form-control"}), label="")
-	city = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Emotions Felt", "class":"form-control"}), label="")
-	state = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Possible Causes", "class":"form-control"}), label="")
-	zipcode = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Analysis & Takeaways", "class":"form-control"}), label="")
+	# first_name -> title
+	first_name = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Dream Title  -  because all stories must have a name !", "class":"form-control"}), label="")
+	# last_name -> author
+	last_name = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Author  -  that's you !", "class":"form-control"}), label="")
+	# email -> dream_type
+	email = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Dream Type  -  vivid / lucid / nightmare / recurring / etc", "class":"form-control"}), label="")
+	# phone -> dreamed_at
+	phone = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Dreamed At  -  when? where?", "class":"form-control"}), label="")
+	# address -> dream_content
+	address = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Dream Content  -  tell us all about it !", "class":"form-control"}), label="")
+	# city -> emotions_felt
+	city = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Emotions Felt  -  can be during or after the dream", "class":"form-control"}), label="")
+	# state -> poss_causes
+	state = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Possible Causes  -  what factors in your life might've contributed?", "class":"form-control"}), label="")
+	# zipcode -> takeaways
+	zipcode = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder":"Analysis & Takeaways  -  what can you learn from this?", "class":"form-control"}), label="")
 
 	class Meta:
 		model = Record

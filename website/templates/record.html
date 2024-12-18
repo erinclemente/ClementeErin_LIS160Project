@@ -8,18 +8,29 @@
   <div class="card-body">
     <blockquote class="blockquote mb-0">
       <p>
-      	{{ customer_record.email }}<br/>
-        {{ customer_record.phone }}<br/>
         {{ customer_record.address }}<br/>
       </p>
-      <footer class="blockquote-footer">{{ customer_record.city }}<br/>
-        {{ customer_record.state }}<br/>
-        {{ customer_record.zipcode }}<br/>
-        {{ customer_record.created_at }}<br/>
-        {{ customer_record.id }}</footer>
+      <footer class="blockquote-footer">{{ customer_record.last_name }}<br/></footer>
     </blockquote>
   </div>
 </div>
+<br/><br/>
+<div class="card">
+  <div class="card-header">
+    <i>details</i>
+  </div>
+  <div class="card-body">
+    <p>  
+        <b>Dream Type:</b> {{ customer_record.email }}<br/><br/>
+        <b>Dreamed At:</b> {{ customer_record.phone }}<br/><br/>
+        <b>Possible Causes:</b> {{ customer_record.state }}<br/><br/>
+        <b>Takeaways:</b> {{ customer_record.zipcode }}<br/><br/>
+        <b>Recorded At:</b> {{ customer_record.created_at }}<br/><br/>
+        <b>Dream ID:</b> {{ customer_record.id }}
+    </p>
+  </div>
+</div>
+  
 <br/><br/>
   <a href="{% url 'home' %}" class= "btn btn-secondary">Return home</a>
 

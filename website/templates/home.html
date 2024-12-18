@@ -5,31 +5,32 @@
 {% if user.is_authenticated %}
 
 <h1>DreamSpace: A Database for Dreams</h1><br/>
-<p>Welcome! This little digital space was created by Erin Clemente as a final project for her LIS 160 class. The assignment was to make a database program with CRUD functions (Create, Read, Update, and Delete), designed to the students' liking!<br/><br/> Erin has a passion for journaling. She keeps journals for different things- everyday events, book reviews, and even dreams! For this project, she wanted to incorporate her dream journals into a database.<br/><br/>Dreams are fleeting! <br/><br/>Here in DreamSpace, you can jot down your dreams and come back for them later. Whether it's to psychoanalyze yourself or have a good laugh, DreamSpace holds those little films you've had in your sleep. </p><br/>
+<p>Welcome! This little digital space was created by Erin Clemente as a final project for her LIS 160 class. The assignment was to make a database program with CRUD functions (Create, Read, Update, and Delete), designed to the students' liking!<br/><br/> Erin has a passion for journaling. She keeps journals for different things- everyday events, book reviews, and even dreams! For this project, she wanted to incorporate her dream journals into a database.<br/><br/>Dreams are fleeting! <br/><br/>Here in DreamSpace, you can jot down your dreams- DreamDocs as we call them, and come back for them later. Whether it's to psychoanalyze yourself or have a good laugh, DreamSpace holds those little films you've had in your sleep! </p><br/>
 
-<a href="{% url 'add_record' %}" class= "btn btn-secondary">Add DreamDoc</a><br/><br/><br/>
+<a href="{% url 'add_record' %}" class= "btn btn-secondary">Add DreamDoc</a><br/><br/>
 
 <table class="table table-striped table-hover table-bordered">
   <thead class="table-dark">
     <tr>
+      <th scope="col">ID</th>
       <th scope="col">Title</th>
       <th scope="col">Author</th>
       <th scope="col">Dream Type</th>
       <th scope="col">Dreamed At</th>
       <th scope="col">Recorded At</th>
-      <th scope="col">ID</th>
     </tr>
   </thead>
   <tbody>
     {% if records %}
       {% for record in records %}
         <tr> 
-            <td>{{ record.first_name }}</td>
+            <td>{{ record.id }}</td>
+            <td><a href="{% url 'record' record.id %}">{{ record.first_name }}</a></td>
             <td>{{ record.last_name }}</td>
             <td>{{ record.email }}</td>
             <td>{{ record.phone }}</td>
             <td>{{ record.created_at }}</td>
-            <td><a href="{% url 'record' record.id %}">{{ record.id }}</a></td>
+            
         </tr>
       {% endfor %}
     {% endif %}
@@ -39,17 +40,17 @@
 
 {% else %}
 <div class="col-md-6 offset-md-3">
-<h1>Login</h1>
+<h1>DreamSpace Door</h1>
 <br/>
 <form method="POST" action="{% url 'home' %}">
 	{% csrf_token %}
   <div class="mb-3">
-    <input type="text" class="form-control" name="username", placeholder="Username" required>
+    <input type="text" class="form-control" name="username", placeholder="Username, please !" required>
   </div>
   <div class="mb-3">
-    <input type="password" class="form-control" name="password", placeholder="Password" required>
+    <input type="password" class="form-control" name="password", placeholder="Password, too !" required>
   </div>
-  <button type="submit" class="btn btn-primary">Log In</button>
+  <button type="submit" class="btn btn-primary">Enter</button>
 </form>
 </div>
 
