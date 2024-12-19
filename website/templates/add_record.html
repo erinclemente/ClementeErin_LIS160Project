@@ -2,6 +2,7 @@
 {% block content %}
 
 <h1>Add record</h1>
+
 <div class="col-md-6 offset-md-3">
 	<form method="POST" action="{% url 'add_record' %}">
 	{% csrf_token %}
